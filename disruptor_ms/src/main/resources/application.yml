@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://49.232.152.12:3306/maniac?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: Maniac@235
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  config-location: classpath:mybatis-config.xml
+
+
+#请求队列长度, 值必须是2的次方
+request-disruptor:
+  jvm-queue-size: 131072
+
+# 商品库存更新SQL
+item-update:
+  proc:
+    num: 1
+    sql-buffer-size: 500
+    queue-size: 65536
+
+# 订单插入SQL
+order-insert:
+  proc:
+    num: 1
+    sql-buffer-size: 500
+    queue-size: 65536
+
+
+rocketmq:
+  nameServer: localhost:9876
+  topic: ms
+  tag: item
+  producer:
+    producerGroup: ms_producer_prod
+  consumer:
+    consumerGroup: ms_consumer_prod
+
+
+logging:
+  config: classpath:logback.xml
